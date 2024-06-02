@@ -1,22 +1,57 @@
-# goit-rdb-hw-02 Relationship Databases Topic II
+# goit-rdb-hw-04 Relationship Databases Topic IV DML and DDL commands. Complex SQL expressions
 
-1. Переведіть початкову таблицю в першу нормальну форму, розробіть ER-діаграму отриманих таблиць.
+1. Структура БД
+   a. Назва схеми — “LibraryManagement”
+   b. Таблиця "authors":
 
-![1NF_screenshot](./assets/1NF_screenshot.png)
+![screenshot](./assets)
 
-2. Переведіть нові таблиці в другу нормальну форму, розробіть ER-діаграму отриманих таблиць.
+c. Таблиця "genres":
 
-![2NF_screenshot](./assets/2NF_screenshot.png)
+![screenshot](./assets)
 
-3. Переведіть нові таблиці в третю нормальну форму, розробіть ER-діаграму отриманих таблиць.
+d. Таблиця "books":
 
-![3NF_screenshot](./assets/3NF_screenshot.png)
+![screenshot](./assets)
 
-💡 Результат нормалізації таблиць може бути в довільній формі/форматі (Google Doc, Google таблиці тощо). 5. Створено ER-діаграму отриманих таблиць. Діаграма має відповідати нормалізованим таблицям.
+e. Таблиця "users":
 
-![Google Sheets](./assets/NF_screenshot_Google_Sheets.png)
+![screenshot](./assets)
 
-💡 Має бути декілька таблиць зі зв’язком між ними. Результат може бути у вигляді файлу та/або скриншота. 6. Використано зрозумілі та конкретні імена для сутностей та атрибутів. Уточнено типи даних для атрибутів. Усі відношення й атрибути мають чіткі і зрозумілі кардинальності та значення. 7. Створено таблиці в базі даних (тільки таблиці й колонки з урахуванням зв'язків) вручну або автоматично.
-💡 Результат має бути у вигляді скриншота розгорнутої схеми у Workbench.
+f. Таблиця "borrowed_books":
 
-![NF_screenshot_schemas_p1-4](./assets/NF_screenshot_schemas_p1-4.png)
+![screenshot](./assets)
+
+2. Tables filled with test data rows:
+
+![screenshot](./assets)
+
+3. A query using FROM and INNER JOIN statements that joins all the data tables from the files: order_details, orders, customers, products, categories, employees, shippers, suppliers with shared keys:
+
+![screenshot](./assets)
+
+4. Let's determine how many rows we got (using the COUNT statement):
+
+a. Let's change several INNER statements to LEFT or RIGHT and determine what happens to the number of rows and why:
+
+![screenshot](./assets)
+
+b. Select only those rows where employee_id > 3 and ≤ 10:
+
+![screenshot](./assets)
+
+c. Group by category name, count number of rows in group, average product quantity (product quantity is in order_details.quantity):
+
+![screenshot](./assets)
+
+d. Filter out rows where the average number of items is greater than 21:
+
+![screenshot](./assets)
+
+e. Sort the rows in descending order of number of rows:
+
+![screenshot](./assets)
+
+f. Display (select) four lines with the first line omitted:
+
+![screenshot](./assets)
