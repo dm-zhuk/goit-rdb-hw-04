@@ -1,50 +1,49 @@
 
-`#1
+`#1 -- Create new schema, tables
 CREATE SCHEMA LibraryManagement;
 USE LibraryManagement;
 
 CREATE TABLE authors (
-    author_id INT AUTO_INCREMENT PRIMARY KEY,
+    author_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     author_name VARCHAR(255)
 );
 
 CREATE TABLE genres (
-    genre_id INT AUTO_INCREMENT PRIMARY KEY,
+    genre_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     genre_name VARCHAR(255)
 );
 
 CREATE TABLE books (
-    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
     publication_year YEAR,
-    author_id INT,
+    author_id INT NOT NULL,
     FOREIGN KEY (author_id)
         REFERENCES authors (author_id),
-    genre_id INT,
+    genre_id INT NOT NULL,
     FOREIGN KEY (genre_id)
         REFERENCES genres (genre_id)
 );
 
 CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(255),
     email VARCHAR(45)
 );
 
 CREATE TABLE borrowed_books (
-    borrow_id INT AUTO_INCREMENT PRIMARY KEY,
-    book_id INT,
+    borrow_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL,
     FOREIGN KEY (book_id)
         REFERENCES books (book_id),
-    user_id INT,
+    user_id INT NOT NULL,
     FOREIGN KEY (user_id)
         REFERENCES users (user_id),
     borrow_date DATE,
     return_date DATE
 );
 
-#2
--- Insert data into the authors table
+#2 -- Insert data into tables
 INSERT INTO authors (author_name) VALUES
     ('J.K. Rowling'),
     ('George R.R. Martin'),
@@ -52,23 +51,20 @@ INSERT INTO authors (author_name) VALUES
     ('Agatha Christie'),
     ('Ernest Hemingway');
 
--- Insert data into the genres table
 INSERT INTO genres (genre_name) VALUES
     ('Fantasy'),
     ('Mystery'),
     ('Horror'),
     ('Drama'),
     ('Romance');
-
--- Insert data into the books table
+    
 INSERT INTO books (title, publication_year, author_id, genre_id) VALUES
     ('Harry Potter and the Sorcerer''s Stone', 1997, 1, 1),
     ('A Game of Thrones', 1996, 2, 1),
     ('The Shining', 1977, 3, 3),
     ('Murder on the Orient Express', 1934, 4, 2),
     ('The Old Man and the Sea', 1951, 5, 4);
-
--- Insert data into the users table
+    
 INSERT INTO users (user_name, email) VALUES
     ('John Doe', 'john.doe@example.com'),
     ('Jane Smith', 'jane.smith@example.com'),
@@ -76,7 +72,6 @@ INSERT INTO users (user_name, email) VALUES
     ('Emily Davis', 'emily.davis@example.com'),
     ('Michael Wilson', 'michael.wilson@example.com');
 
--- Insert data into the borrowed_books table
 INSERT INTO borrowed_books (book_id, user_id, borrow_date, return_date) VALUES
     (1, 1, '2024-04-15', '2024-04-29'),
     (2, 2, '2024-05-01', '2024-05-15'),
@@ -84,5 +79,4 @@ INSERT INTO borrowed_books (book_id, user_id, borrow_date, return_date) VALUES
     (4, 4, '2024-02-10', '2024-02-24'),
     (5, 5, '2024-06-01', '2024-06-15');
     
-#3
-    `
+ `
