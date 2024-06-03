@@ -24,7 +24,14 @@ f. Таблиця "borrowed_books":
 
 2. Tables filled with test data rows:
 
-![screenshot](./assets)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-02.1.jpg)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-02.2.jpg)
+
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-02.3.jpg)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-02.4.jpg)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-02.5.jpg)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-02.6.jpg)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-02.7.jpg)
 
 3. A query using FROM and INNER JOIN statements that joins all the data tables from the files: order_details, orders, customers, products, categories, employees, shippers, suppliers with shared keys:
 
