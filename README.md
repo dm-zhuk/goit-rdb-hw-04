@@ -4,23 +4,23 @@
    a. Назва схеми — “LibraryManagement”
    b. Таблиця "authors":
 
-![screenshot](./assets)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-01.1.jpg)
 
 c. Таблиця "genres":
 
-![screenshot](./assets)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-01.2.jpg)
 
 d. Таблиця "books":
 
-![screenshot](./assets)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-01.3.jpg)
 
 e. Таблиця "users":
 
-![screenshot](./assets)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-01.4.jpg)
 
 f. Таблиця "borrowed_books":
 
-![screenshot](./assets)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-01.5.jpg)
 
 2. Tables filled with test data rows:
 
