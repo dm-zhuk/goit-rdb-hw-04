@@ -35,7 +35,9 @@ f. Таблиця "borrowed_books":
 
 3. A query using FROM and INNER JOIN statements that joins all the data tables from the files: order_details, orders, customers, products, categories, employees, shippers, suppliers with shared keys:
 
-![screenshot](./assets)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-03.1.jpg)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-03.2.jpg)
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-03.3.jpg)
 
 4. Let's determine how many rows we got (using the COUNT statement):
 
