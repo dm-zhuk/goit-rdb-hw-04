@@ -41,12 +41,15 @@ f. Таблиця "borrowed_books":
 
 4. Let's determine how many rows we got (using the COUNT statement):
 
+![screenshot](./assets/Screenshot%20rdb-hw-04-test-04.1.jpg)
+
 a. Let's change several INNER statements to LEFT or RIGHT and determine what happens to the number of rows and why:
 
-![screenshot](./assets/Screenshot%20rdb-hw-04-test-04.1.jpg)
 ![screenshot](./assets/Screenshot%20rdb-hw-04-test-04.2.1.jpg)
 ![screenshot](./assets/Screenshot%20rdb-hw-04-test-04.2.2.jpg)
 ![screenshot](./assets/Screenshot%20rdb-hw-04-test-04.2.3.jpg)
+
+-- Кількість рядків змінюється тому, що INNER JOINs включають лише рядки, які мають співпадіючі значення в обох таблицях. LEFT і RIGHT JOINs, навпаки, включають всі рядки з однієї таблиці та лише співпадіючі рядки з іншої таблиці. Це може привести до збільшення кількості рядків, якщо є рядки, які не співпадають у якійсь таблиці, або зменшення, якщо є рядки, які не співпадають у обох таблицях. У нашому випадку кількість рядків залишається незмінною, 518.
 
 b. Select only those rows where employee_id > 3 and ≤ 10:
 
