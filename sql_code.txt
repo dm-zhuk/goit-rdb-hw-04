@@ -78,7 +78,7 @@ INSERT INTO borrowed_books (book_id, user_id, borrow_date, return_date) VALUES
     (4, 4, '2024-02-10', '2024-02-24'),
     (5, 5, '2024-06-01', '2024-06-15');
     
-    #3 -- Create queries on mydb_hw tables
+    #3 -- Create inner_join queries on mydb_hw tables
 USE mydb_hw;
 
 SELECT
@@ -99,6 +99,9 @@ SELECT
   s.postal_code AS supplier_postal_code,
   s.country AS supplier_country,
   s.phone AS supplier_phone,
+  sh.id AS shipper_id,
+  sh.name AS shipper_name,
+  sh.phone AS shipper_phone,
   o.id AS order_id,
   o.customer_id AS order_customer_id,
   o.employee_id AS order_employee_id,
@@ -120,17 +123,87 @@ SELECT
   e.first_name AS employee_first_name,
   e.birthdate AS employee_birthdate,
   e.photo AS employee_photo,
-  e.notes AS employee_notes,
-  sh.id AS shipper_id,
-  sh.name AS shipper_name,
-  sh.phone AS shipper_phone
+  e.notes AS employee_notes
 FROM
   categories c
   INNER JOIN products p ON c.id = p.category_id
   INNER JOIN suppliers s ON p.supplier_id = s.id
   INNER JOIN order_details od ON p.id = od.product_id
   INNER JOIN orders o ON od.order_id = o.id
+  INNER JOIN shippers sh ON o.shipper_id = sh.id
   INNER JOIN customers cu ON o.customer_id = cu.id
-  INNER JOIN employees e ON o.employee_id = e.employee_id
-  INNER JOIN shippers sh ON o.shipper_id = sh.id;
+  INNER JOIN employees e ON o.employee_id = e.employee_id;
+
+#4 -- Create queries on mydb_hw tables
+#4.1 -- Total number of rows find
+SELECT COUNT(*) AS total_rows
+FROM categories c
+  INNER JOIN products p ON c.id = p.category_id
+  INNER JOIN suppliers s ON p.supplier_id = s.id
+  INNER JOIN order_details od ON p.id = od.product_id
+  INNER JOIN orders o ON od.order_id = o.id
+  INNER JOIN shippers sh ON o.shipper_id = sh.id
+  INNER JOIN customers cu ON o.customer_id = cu.id
+  INNER JOIN employees e ON o.employee_id = e.employee_id;
+
+#4.2 -- Vary some `inner` on `left` or `right`
+SELECT
+c.id AS category_id,
+c.name AS category_name,
+c.description AS category_description,
+p.id AS product_id,
+p.name AS product_name,
+p.category_id AS product_category_id,
+p.unit AS product_unit,
+p.price AS product_price,
+o.id AS order_id,
+o.customer_id AS order_customer_id,
+o.employee_id AS order_employee_id,
+o.date AS order_date,
+o.shipper_id AS order_shipper_id,
+od.id AS order_detail_id,
+od.order_id AS order_detail_order_id,
+od.product_id AS order_detail_product_id,
+od.quantity AS order_detail_quantity
+FROM
+mydb_hw.categories c
+LEFT JOIN mydb_hw.products p ON c.id = p.category_id
+INNER JOIN mydb_hw.order_details od ON p.id = od.product_id
+RIGHT JOIN mydb_hw.orders o ON od.order_id = o.id;
+
+-- Кількість рядків змінюється тому, що INNER JOINs включають лише рядки, які мають співпадіючі значення в обох таблицях. LEFT і RIGHT JOINs, навпаки, включають всі рядки з однієї таблиці та лише співпадіючі рядки з іншої таблиці. Це може привести до збільшення кількості рядків, якщо є рядки, які не співпадають у якійсь таблиці, або зменшення, якщо є рядки, які не співпадають у обох таблицях. У нашому випадку кількість рядків залишається незмінною, 518.
+
+#4.3 -- Select those rows only, where employee_id > 3 та ≤ 10
+SELECT * 
+FROM employees e
+WHERE e.employee_id > 3 AND e.employee_id <= 10;
+
+#4.4 -- Group by c. name, count number of rows in group, average p. quantity
+SELECT 
+    COUNT(od.order_id) AS total_rows,
+    AVG(od.quantity) AS avg_quantity
+FROM
+    order_details od
+GROUP BY od.order_id;
+
+#4.5 -- Avg > 21
+SELECT od.order_id, AVG(od.quantity) AS avg_quantity
+FROM order_details od
+GROUP BY od.order_id
+HAVING AVG(od.quantity) > 21;
+
+#4.6 -- Sort out the rows in DESC order
+SELECT od.order_id, AVG(od.quantity) AS avg_quantity
+FROM order_details od
+GROUP BY od.order_id
+HAVING AVG(od.quantity) > 21
+ORDER BY od.order_id DESC;
+
+#4.7 -- Select 4 rows excl. row 1
+SELECT od.order_id, AVG(od.quantity) AS avg_quantity
+FROM order_details od
+GROUP BY od.order_id
+HAVING AVG(od.quantity) > 21
+ORDER BY od.order_id DESC
+LIMIT 4 OFFSET 1;
  `
